@@ -21,6 +21,7 @@ $dirsearcher = New-Object System.DirectoryServices.DirectorySearcher($direntry)
 $dirsearcher.filter="samAccountType=805306368"
 # $dirsearcher.filter="name=jeffadmin"
 # $dirsearcher.filter="objectclass=group"
+# $dirsearcher.filter="(&(objectCategory=group)(cn=Development Department*))"
 
 $result = $dirsearcher.FindAll()
 
