@@ -40,28 +40,28 @@ $result = $dirsearcher.FindAll()
 $serviceName = "LanmanServer" # You can change the service name as needed
 
 foreach ($obj in $result) {
-    Foreach($prop in $obj.Properties)
+    foreach($prop in $obj.Properties)
     {
         $computerName = $prop.cn
         $serviceName = "LanmanServer" # You can change the service name as needed
     
-     $scManagerHandle = [Advapi32]::OpenSCManager($computerName, 'ServicesActive', 0xF003F) # SC_MANAGER_CONNECT
+        $scManagerHandle = [Advapi32]::OpenSCManager($computerName, 'ServicesActive', 0xF003F) # SC_MANAGER_CONNECT
     
-      if ($scManagerHandle.ToInt32() -ne 0) {
-      $serviceHandle = [Advapi32]::OpenService($scManagerHandle, $serviceName, 0xF003F) # SERVICE_QUERY_STATUS
+        if ($scManagerHandle.ToInt32() -ne 0) {
+            $serviceHandle = [Advapi32]::OpenService($scManagerHandle, $serviceName, 0xF003F) # SERVICE_QUERY_STATUS
       
-      if ($serviceHandle.ToInt32() -ne 0) {
-          Write-Host "User has administrative permissions on $computerName"
-      }
-      else {
-          Write-Host "User does not have administrative permissions on $computerName"
-      }
+            if ($serviceHandle.ToInt32() -ne 0) {
+                Write-Host "User has administrative permissions on $computerName"
+            }
+            else {
+                Write-Host "User does not have administrative permissions on $computerName"
+            }
       
-      [Advapi32]::CloseServiceHandle($serviceHandle)
-      [Advapi32]::CloseServiceHandle($scManagerHandle)
-    }
-      else {
-          Write-Host "Failed to connect to Service Control Manager on $computerName"
-      }
+            [Advapi32]::CloseServiceHandle($serviceHandle)
+            [Advapi32]::CloseServiceHandle($scManagerHandle)
+        }
+        else {
+            Write-Host "Failed to connect to Service Control Manager on $computerName"
+        }
     }
 }
