@@ -43,7 +43,6 @@ foreach ($obj in $result) {
     foreach($prop in $obj.Properties)
     {
         $computerName = $prop.cn
-        $serviceName = "LanmanServer" # You can change the service name as needed
     
         $scManagerHandle = [Advapi32]::OpenSCManager($computerName, 'ServicesActive', 0xF003F) # SC_MANAGER_CONNECT
     
