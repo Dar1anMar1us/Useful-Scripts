@@ -47,10 +47,10 @@ foreach ($obj in $result) {
     
         $scManagerHandle = [Advapi32]::OpenSCManager($computerName, 'ServicesActive', 0xF003F) # SC_MANAGER_CONNECT
     
-        if ($scManagerHandle.ToInt32() -ne 0) {
+        if ($scManagerHandle -ne 0) {
             $serviceHandle = [Advapi32]::OpenService($scManagerHandle, $serviceName, 0xF003F) # SERVICE_QUERY_STATUS
       
-            if ($serviceHandle.ToInt32() -ne 0) {
+            if ($serviceHandle -ne 0) {
                 Write-Host "User has administrative permissions on $computerName"
             }
             else {
