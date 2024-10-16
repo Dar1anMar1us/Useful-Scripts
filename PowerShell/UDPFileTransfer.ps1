@@ -1,7 +1,6 @@
 $udpClient = New-Object System.Net.Sockets.UdpClient
 $ip = [System.Net.IPAddress]::Parse("192.168.1.5")  # Replace with your Linux IP
 $filePath = "C:\path\to\your\file.txt"
-$filePath = "C:\Tools\kerbrute_windows_amd64.exe"
 $maxPacketSize = 8192  # Adjust the packet size as needed (e.g., 8192 bytes)
 
 # Read the entire file
